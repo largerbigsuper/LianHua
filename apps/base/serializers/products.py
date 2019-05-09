@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# @Time    : 2019/5/9 上午10:59
+# @Author  : Frankie
+# @Email   : zaihuazhao@163.com
+# @File    : products.py
+from rest_framework import serializers
+
+from datamodels.products.models import ProductType, Product
+
+
+class BaseProductTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ProductType
+        fields = ('id', 'name', 'level', 'parent_id')
+
