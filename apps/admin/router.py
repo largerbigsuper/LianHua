@@ -13,6 +13,6 @@ admin_router = routers.DefaultRouter()
 
 admin_router.register('tag', TagViewSet, base_name='admin-tag')
 admin_router.register('store', StoreViewSet, base_name='admin-store')
-admin_router.register('product-type', ProductTypeViewSet, base_name='admin-product-type')
+admin_router.register('producttype', ProductTypeViewSet, base_name='admin-producttype')
 admin_router.register('product', ProductViewSet, base_name='admin-product')
 
