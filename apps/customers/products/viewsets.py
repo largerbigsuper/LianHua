@@ -8,9 +8,17 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 from LianHua.settings import CID
+from apps.base.serializers.products import BaseProductTypeSerializer
 from apps.customers.products.serializers import ProductSerializer
 from datamodels.data.models import mm_ProductViewCountRecord, mm_CustomerAccessProductRecord
-from datamodels.products.models import mm_Product
+from datamodels.products.models import mm_Product, mm_ProductType
+
+
+class ProductTypeViewSet(viewsets.ReadOnlyModelViewSet):
+
+    permission_classes = []
+    serializer_class = BaseProductTypeSerializer
+    queryset = mm_ProductType.all()
 
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):

@@ -9,8 +9,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from LianHua.lianhua_settings import CID
+from apps.base.serializers.products import BaseProductSerializer
 from apps.base.serializers.tags import BaseTagSerializer
-from apps.customers.products.serializers import ProductSerializer
 from apps.customers.stores.serializers import StoreSerializer
 from datamodels.data.models import mm_CustomerAccessStoreRecord, mm_StoreViewCountRecord
 from datamodels.products.models import mm_Product
@@ -35,7 +35,7 @@ class StoreViewSet(viewsets.ReadOnlyModelViewSet):
         store = self.get_object()
         product_qs = mm_Product.filter(store=store)
         page = self.paginate_queryset(product_qs)
-        serializer = ProductSerializer(page, many=True)
+        serializer = BaseProductSerializer(page, many=True)
         return self.get_paginated_response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):

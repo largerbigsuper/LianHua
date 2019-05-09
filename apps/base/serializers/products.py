@@ -13,5 +13,14 @@ class BaseProductTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProductType
-        fields = ('id', 'name', 'level', 'parent_id')
+        fields = ('id', 'name')
 
+
+class BaseProductSerializer(serializers.ModelSerializer):
+
+    types = BaseProductTypeSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Product
+        fields = ('id', 'name', 'types', 'price', 'unit', 'images', 'detail',
+                  'create_at', 'update_at', 'view_total')
