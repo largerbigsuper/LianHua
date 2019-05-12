@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from LianHua.views import UploadTokenView
 from apps.admin.router import admin_router
 from apps.common.router import common_router
 from apps.customers.router import customer_router
@@ -27,3 +28,10 @@ urlpatterns = [
     path('staff/', include(admin_router.urls)),
     path('customer/', include(customer_router.urls)),
 ]
+
+urls = [
+    path('qiniutoken/', UploadTokenView.as_view()),
+]
+
+urlpatterns += urls
+
