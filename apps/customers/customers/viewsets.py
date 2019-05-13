@@ -16,7 +16,7 @@ from LianHua import settings
 from apps.customers.customers.serilizers import CustomerProfileSerializer, MiniprogramLoginSerializer, LoginSerializer, \
     RegisterSerializer
 from datamodels.customers.models import mm_Customer
-from lib.common import customer_login
+from lib.common import customer_login, common_logout
 
 
 class CustomerViewSet(viewsets.ModelViewSet):
@@ -75,4 +75,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
         customer = mm_Customer.add(account=account, password=password)
         return Response(data={'account': account})
 
-
+    @action(detail=False, methods=['get'])
+    def logout(self, request):
+        common_logout(request)
+        return Response()
