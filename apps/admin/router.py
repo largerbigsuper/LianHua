@@ -7,6 +7,7 @@
 from rest_framework import routers
 
 from apps.admin.admin.viewsets import AdminViewSet
+from apps.admin.index.viewsets import AdminAdViewSet
 from apps.admin.products.viewsets import ProductTypeViewSet, ProductViewSet
 from apps.admin.stores.viewsets import StoreViewSet, TagViewSet
 
@@ -17,4 +18,5 @@ admin_router.register('tag', TagViewSet, base_name='admin-tag')
 admin_router.register('store', StoreViewSet, base_name='admin-store')
 admin_router.register('producttype', ProductTypeViewSet, base_name='admin-producttype')
 admin_router.register('product', ProductViewSet, base_name='admin-product')
+admin_router.register('ad', AdminAdViewSet, base_name='admin-ad')
 

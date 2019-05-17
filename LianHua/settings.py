@@ -51,6 +51,8 @@ INSTALLED_APPS = [
 THIRD_APPS = [
     'rest_framework',
     'django_extensions',
+    'django_filters',
+    'crispy_forms',
 ]
 
 APPS = [
@@ -59,6 +61,7 @@ APPS = [
     'datamodels.products',
     'datamodels.stores',
     'datamodels.data',
+    'datamodels.index',
 ]
 
 INSTALLED_APPS += THIRD_APPS
@@ -138,9 +141,7 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 AUTH_USER_MODEL = 'auth.User'
-
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'lib.pagination.CustomPagination',
@@ -156,5 +157,23 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     ),
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+
+    'DATETIME_FORMAT': '%Y-%m-%d %H:%M:%S',
+
+    'DATETIME_INPUT_FORMATS': [
+        '%Y-%m-%d %H:%M:%S',  # '2006-10-25 14:30:59'
+        '%Y-%m-%d %H:%M:%S.%f',  # '2006-10-25 14:30:59.000200'
+        '%Y-%m-%d %H:%M',  # '2006-10-25 14:30'
+        '%Y-%m-%d',  # '2006-10-25'
+        '%m/%d/%Y %H:%M:%S',  # '10/25/2006 14:30:59'
+        '%m/%d/%Y %H:%M:%S.%f',  # '10/25/2006 14:30:59.000200'
+        '%m/%d/%Y %H:%M',  # '10/25/2006 14:30'
+        '%m/%d/%Y',  # '10/25/2006'
+        '%m/%d/%y %H:%M:%S',  # '10/25/06 14:30:59'
+        '%m/%d/%y %H:%M:%S.%f',  # '10/25/06 14:30:59.000200'
+        '%m/%d/%y %H:%M',  # '10/25/06 14:30'
+        '%m/%d/%y',  # '10/25/06'
+    ]
 }
