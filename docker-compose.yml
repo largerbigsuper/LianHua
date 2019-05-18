@@ -3,6 +3,8 @@ services:
   web:
     build: .
     command: ["./run_web.sh"]
+    ports:
+      - "7002:8000"
     volumes:
       - .:/code
     links:
@@ -50,19 +52,19 @@ services:
 #      - db
 #      - redis
 
-  nginx:
-    restart: always
-    depends_on:
-      - web
-    build:
-      context: docker/nginx
-      dockerfile: Dockerfile
-
-    ports:
-      - "8090:8090"
-#      - "443:443"
-    volumes:
-      - .:/code
+#  nginx:
+#    restart: always
+#    depends_on:
+#      - web
+#    build:
+#      context: docker/nginx
+#      dockerfile: Dockerfile
+#
+#    ports:
+#      - "8090:8090"
+##      - "443:443"
+#    volumes:
+#      - .:/code
 
 volumes:
   service-db:
