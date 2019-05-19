@@ -17,7 +17,7 @@ class ProductViewCountRecordManager(ModelManager):
 class ProductViewCountRecord(models.Model):
     """产品访问次数记录"""
 
-    product = models.ForeignKey('products.Product', on_delete=models.DO_NOTHING)
+    product = models.ForeignKey('products.Product', on_delete=models.SET_NULL, null=True)
     date = models.DateField(auto_now_add=True, unique_for_date=True, verbose_name='记录时间')
     total = models.IntegerField(default=0, verbose_name='访问次数')
 

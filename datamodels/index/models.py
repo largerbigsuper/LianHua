@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 from LianHua.lianhua_settings import DB_PREFIX
@@ -29,8 +31,8 @@ class Ad(models.Model):
     status = models.PositiveSmallIntegerField(choices=AdManager.AD_STATUS_CHOICE,
                                               default=AdManager.AD_STATUS_OFF,
                                               verbose_name='关闭|开启')
-    begin_at = models.DateTimeField(verbose_name='首页显示开始时间')
-    end_at = models.DateTimeField(verbose_name='首页显示结束时间')
+    begin_at = models.DateTimeField(verbose_name='首页显示开始时间', blank=True, default=datetime.now())
+    end_at = models.DateTimeField(verbose_name='首页显示结束时间', blank=True, default=datetime.now())
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
 
     objects = AdManager()

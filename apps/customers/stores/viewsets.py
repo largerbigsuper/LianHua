@@ -10,7 +10,7 @@ from rest_framework.response import Response
 
 from LianHua.lianhua_settings import CID
 from apps.base.serializers.products import BaseProductSerializer
-from apps.base.serializers.tags import BaseTagSerializer
+from apps.base.serializers.stores import BaseStoreTagSerializer
 from apps.customers.stores.serializers import StoreSerializer
 from datamodels.data.models import mm_CustomerAccessStoreRecord, mm_StoreViewCountRecord
 from datamodels.products.models import mm_Product
@@ -21,7 +21,7 @@ class TagViewSet(viewsets.ReadOnlyModelViewSet):
 
     permission_classes = []
     queryset = mm_Tag.all()
-    serializer_class = BaseTagSerializer
+    serializer_class = BaseStoreTagSerializer
 
 
 class StoreViewSet(viewsets.ReadOnlyModelViewSet):

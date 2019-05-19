@@ -19,6 +19,7 @@ class BaseProductTypeSerializer(serializers.ModelSerializer):
 class BaseProductSerializer(serializers.ModelSerializer):
 
     types = BaseProductTypeSerializer(many=True, read_only=True)
+    images = serializers.ListField()
 
     class Meta:
         model = Product

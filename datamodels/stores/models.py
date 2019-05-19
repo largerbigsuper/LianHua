@@ -1,4 +1,5 @@
 from django.db import models
+from django_extensions.db.fields.json import JSONField
 
 from LianHua.settings import AUTH_USER_MODEL, DB_PREFIX
 from lib.modelmanager import ModelManager
@@ -35,7 +36,7 @@ class Store(models.Model):
     wechat = models.CharField(max_length=40, blank=True, verbose_name='微信')
     address_info = models.CharField(max_length=120, blank=True, verbose_name='地址信息')
     area = models.ForeignKey('common.Area', on_delete=models.CASCADE, null=True, blank=True)
-    images = models.CharField(max_length=500, default='[]', verbose_name='店铺图片')
+    images = JSONField(max_length=500, default='[]', verbose_name='店铺图片')
     tags = models.ManyToManyField('Tag', blank=True)
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
 

@@ -6,7 +6,7 @@
 # @File    : serializers.py
 from rest_framework import serializers
 
-from apps.base.serializers.products import BaseProductTypeSerializer
+from apps.base.serializers.products import BaseProductSerializer
 from datamodels.products.models import Product, mm_ProductType
 
 
@@ -15,9 +15,7 @@ class ProductTypeIdSerialzier(serializers.Serializer):
     producttype_id = serializers.PrimaryKeyRelatedField(queryset=mm_ProductType.all())
 
 
-class ProductSerializer(serializers.ModelSerializer):
-
-    types = BaseProductTypeSerializer(many=True, read_only=True)
+class ProductSerializer(BaseProductSerializer):
 
     class Meta:
         model = Product

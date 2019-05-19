@@ -10,7 +10,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 
 from apps.admin.stores.serializers import StoreSerializer
-from apps.base.serializers.tags import BaseTagSerializer, BaseTagIdSerialzier
+from apps.base.serializers.stores import BaseStoreTagSerializer, BaseTagIdSerialzier
 from datamodels.stores.models import mm_Store, mm_Tag
 
 
@@ -18,7 +18,7 @@ class TagViewSet(viewsets.ModelViewSet):
 
     permission_classes = (IsAuthenticated, IsAdminUser)
     queryset = mm_Tag.all()
-    serializer_class = BaseTagSerializer
+    serializer_class = BaseStoreTagSerializer
 
 
 class StoreViewSet(viewsets.ModelViewSet):

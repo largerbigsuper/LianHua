@@ -6,20 +6,19 @@
 # @File    : serializers.py
 from rest_framework import serializers
 
-from apps.base.serializers.tags import BaseTagSerializer
+from apps.base.serializers.stores import BaseStoreSerializer
+from apps.base.serializers.stores import BaseStoreTagSerializer
 from datamodels.stores.models import Store
 
 
-class StoreSerializer(serializers.ModelSerializer):
-
-    tags = BaseTagSerializer(many=True, read_only=True)
+class StoreSerializer(BaseStoreSerializer):
 
     class Meta:
         model = Store
         fields = ('id', 'name', 'logo', 'desc', 'tel', 'wechat', 'address_info', 'images', 'tags', 'create_at')
 
 
-class StoreSimpleSerializer(serializers.ModelSerializer):
+class StoreSimpleSerializer(BaseStoreSerializer):
 
     class Meta:
         model = Store
