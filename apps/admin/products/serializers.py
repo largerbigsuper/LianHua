@@ -21,4 +21,4 @@ class ProductSerializer(BaseProductSerializer):
         model = Product
         fields = ('id', 'store', 'name', 'types', 'price', 'unit', 'images', 'detail',
                   'create_at', 'update_at', 'status', 'view_total')
-        read_only_fields = ('status', 'view_total')
+        read_only_fields = ('view_total',)

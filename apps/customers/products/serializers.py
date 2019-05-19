@@ -4,17 +4,11 @@
 # @Author  : Frankie
 # @Email   : zaihuazhao@163.com
 # @File    : serializers.py
-from rest_framework import serializers
-
-from apps.base.serializers.products import BaseProductTypeSerializer
-from apps.customers.stores.serializers import StoreSimpleSerializer
+from apps.base.serializers.products import BaseProductSerializer
 from datamodels.products.models import Product
 
 
-class ProductSerializer(serializers.ModelSerializer):
-
-    store = StoreSimpleSerializer()
-    types = BaseProductTypeSerializer(many=True, read_only=True)
+class ProductSerializer(BaseProductSerializer):
 
     class Meta:
         model = Product
