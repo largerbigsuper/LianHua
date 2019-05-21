@@ -35,6 +35,17 @@ class Const(object):
         (AD_TYPE_PINCHE, '拼车'),
     )
 
+    CAR_SERVICE_TYPE_1 = 1
+    CAR_SERVICE_TYPE_2 = 2
+    CAR_SERVICE_TYPE_3 = 3
+    CAR_SERVICE_TYPE_4 = 4
+
+    CAR_SERVICE_TYPE_CHOICE = (
+        (CAR_SERVICE_TYPE_1, '车找人'),
+        (CAR_SERVICE_TYPE_2, '人找车'),
+        (CAR_SERVICE_TYPE_3, '货找车'),
+        (CAR_SERVICE_TYPE_4, '车找货'),
+    )
 
 class ModelManager(Manager, Const):
     pass

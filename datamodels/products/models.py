@@ -40,7 +40,7 @@ class Product(models.Model):
     price = models.FloatField(default=0, verbose_name='价格')
     unit = models.CharField(max_length=100, verbose_name='计价单位')
     images = JSONField(max_length=1000, default='[]', verbose_name='图片')
-    detail = models.CharField(max_length=10000, blank=True, verbose_name='详情')
+    detail = models.TextField(blank=True, verbose_name='详情')
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     update_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
     status = models.PositiveSmallIntegerField(choices=ProductManager.STATUS_CHOICE,
