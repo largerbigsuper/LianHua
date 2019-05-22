@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from LianHua.lianhua_settings import UID
 from apps.customers.services.filters import CarServiceFilter
-from apps.customers.services.serializers import CarServiceSerializer
+from apps.customers.services.serializers import CarServiceSerializer, MyCarServiceSerializer
 from datamodels.services.models import mm_CarService
 
 
@@ -26,11 +26,11 @@ class MyCarServiceViewSet(viewsets.ModelViewSet):
     """我的约车服务"""
 
     permission_classes = (IsAuthenticated, )
-    serializer_class = CarServiceSerializer
+    serializer_class = MyCarServiceSerializer
 
     def get_queryset(self):
-        return mm_CarService.mycarservice(self.request.session[UID])
+        return mm_CarService.mycarservice(self.request.user.customer.id)
 
     def perform_create(self, serializer):
-        serializer.save(customer_id=self.request.session[UID])
+        serializer.save(customer_id=self.request.user.customer.id)
 

@@ -32,6 +32,9 @@ class Area(MPTTModel):
         db_table = DB_PREFIX + 'area'
         verbose_name = verbose_name_plural = '省/市/地区(县)'
 
+    def __str__(self):
+        return self.name
+
 
 mm_Area = Area.objects
 

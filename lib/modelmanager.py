@@ -47,6 +47,7 @@ class Const(object):
         (CAR_SERVICE_TYPE_4, '车找货'),
     )
 
+
 class ModelManager(Manager, Const):
     pass
 
