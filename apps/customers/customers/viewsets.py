@@ -79,3 +79,18 @@ class CustomerViewSet(viewsets.ModelViewSet):
     def logout(self, request):
         common_logout(request)
         return Response()
+
+    @action(detail=False, methods=['get', 'post'], permission_classes=[IsAuthenticated])
+    def profile(self, request):
+        """个人信息"""
+        if request.method == 'GET':
+            serializer = self.serializer_class(request.user.customer)
+            return Response(data=serializer.data)
+        else:
+            serializer = self.serializer_class(request.user, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(data=serializer.data)
+            else:
+                return Response(data=serializer.error, status=status.HTTP_400_BAD_REQUEST)
+
