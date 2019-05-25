@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 ]
 
 THIRD_APPS = [
+    'rest_framework.authtoken',
     'rest_framework',
     'django_extensions',
     'django_filters',
@@ -148,6 +149,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'lib.pagination.CustomPagination',
     'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (

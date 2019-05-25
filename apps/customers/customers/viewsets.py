@@ -7,16 +7,19 @@
 import requests
 from django.contrib.auth import authenticate
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework import viewsets, status
+from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 
-from LianHua import settings
-from apps.customers.customers.serilizers import CustomerProfileSerializer, MiniprogramLoginSerializer, LoginSerializer, \
-    RegisterSerializer
+from apps.customers.customers.serilizers import (CustomerProfileSerializer,
+                                                 LoginSerializer,
+                                                 MiniprogramLoginSerializer,
+                                                 RegisterSerializer)
 from datamodels.customers.models import mm_Customer
-from lib.common import customer_login, common_logout
+from LianHua import settings
+from lib.common import common_logout, customer_login
 
 
 class CustomerViewSet(viewsets.ModelViewSet):
@@ -60,7 +63,10 @@ class CustomerViewSet(viewsets.ModelViewSet):
             if user:
                 customer_login(request, user)
                 serailizer = CustomerProfileSerializer(customer)
-                return Response(data=serailizer.data)
+                token, _ = Token.objects.get_or_create(user=user)
+                data = serailizer.data
+                data['token'] = token.key
+                return Response(data=data)
             else:
                 return Response(data={'detail': '账号或密码错误'}, status=status.HTTP_400_BAD_REQUEST)
         else:
@@ -87,10 +93,9 @@ class CustomerViewSet(viewsets.ModelViewSet):
             serializer = self.serializer_class(request.user.customer)
             return Response(data=serializer.data)
         else:
-            serializer = self.serializer_class(request.user, data=request.data, partial=True)
+            serializer = self.serializer_class(request.user.customer, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
                 return Response(data=serializer.data)
             else:
-                return Response(data=serializer.error, status=status.HTTP_400_BAD_REQUEST)
-
+                return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
