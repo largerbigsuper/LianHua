@@ -64,6 +64,7 @@ APPS = [
     'datamodels.data',
     'datamodels.index',
     'datamodels.services',
+    'datamodels.videos',
 ]
 
 INSTALLED_APPS += THIRD_APPS

@@ -4,7 +4,7 @@
 # @Author  : Frankie
 # @Email   : zaihuazhao@163.com
 # @File    : modelmanager.py
-from django.db.models import Manager
+from django.db import models
 
 
 class Const(object):
@@ -47,7 +47,23 @@ class Const(object):
         (CAR_SERVICE_TYPE_4, '车找货'),
     )
 
+    VIDEO_STATUS_UNPUBLISHED = 0
+    VIDEO_STATUS_PUBLISHED = 1
 
-class ModelManager(Manager, Const):
+    VIDEO_STATUS_CHOICE = (
+        (VIDEO_STATUS_UNPUBLISHED, '未发布'),
+        (VIDEO_STATUS_PUBLISHED, '已发布'),
+    )
+
+
+class ModelManager(models.Manager, Const):
     pass
 
+
+class BaseModel(models.Model):
+
+    update_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+    create_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+
+    class Meta:
+        abstract = True
