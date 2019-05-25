@@ -19,3 +19,25 @@ class CustomPagination(pagination.PageNumberPagination):
             ('page_count', self.page.paginator.num_pages),
             ('results', data)
         ]))
+
+
+class PageNumberPagination_10(CustomPagination):
+
+    page_size = 10
+
+
+class PageNumberPagination_20(CustomPagination):
+
+    page_size = 20
+
+
+class CustomLimitOffsetPagination(pagination.LimitOffsetPagination):
+        def get_paginated_response(self, data):
+        return Response(OrderedDict([
+            ('count', self.count),
+            ('next', self.get_next_link()),
+            ('previous', self.get_previous_link()),
+            ('results', data)
+        ]))
+
+
