@@ -43,7 +43,8 @@ class StoreViewSet(viewsets.ReadOnlyModelViewSet):
         serializer = self.get_serializer(store)
         if request.user.is_authenticated:
             # 记录访问记录
-            mm_CustomerAccessStoreRecord.add_record(request.session[CID], store.id)
+            if request.user.is_authenticated:
+                mm_CustomerAccessStoreRecord.add_record(request.session[CID], store.id)
             mm_StoreViewCountRecord.add_count(store.id)
         return Response(serializer.data)
 
