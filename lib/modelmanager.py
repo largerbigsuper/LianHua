@@ -47,6 +47,18 @@ class Const(object):
         (CAR_SERVICE_TYPE_4, '车找货'),
     )
 
+    CAR_RANGE_XIANNEI = 0
+    CAR_RANGE_SHINEI = 1
+    CAR_RANGE_SHENGNEI = 2
+    CAR_RANGE_KUASHENG = 3
+
+    CAR_RANGE_CHOICE = (
+        (CAR_RANGE_XIANNEI, '县内拼车'),
+        (CAR_RANGE_SHINEI, '市内拼车'),
+        (CAR_RANGE_SHENGNEI, '省内拼车'),
+        (CAR_RANGE_KUASHENG, '跨省拼车'),
+    )
+
     VIDEO_STATUS_UNPUBLISHED = 0
     VIDEO_STATUS_PUBLISHED = 1
 

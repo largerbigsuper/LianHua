@@ -8,6 +8,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from apps.admin.services.serializers import AdminCarServiceSerializer
+from apps.admin.services.filters import AdminCarServiceFilter
 from datamodels.services.models import mm_CarService
 
 
@@ -17,3 +18,4 @@ class AdminCarServiceViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminUser]
     serializer_class = AdminCarServiceSerializer
     queryset = mm_CarService.all()
+    filter_class = AdminCarServiceFilter

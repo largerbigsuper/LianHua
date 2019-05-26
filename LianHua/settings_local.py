@@ -39,7 +39,9 @@ class QiNiuSettings:
     SECRET_KEY = 'Mkms7UphbEH4sWdkWoEnqk0PCjD3V84rIZ3EuL_H'
     BUCKET_NAME_DICT = {
         'image': 'img3-workspace',
+        'video': 'img-workspace'
     }
     BUCKET_DOMAIN_DICT = {
-        'image': 'http://lhxq.top/'
+        'image': 'http://lhxq.top/',
+        'video': 'http://video.lhxq.top/'
     }

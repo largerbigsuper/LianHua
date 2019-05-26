@@ -6,6 +6,8 @@
 # @File    : viewsets.py
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 from LianHua.lianhua_settings import UID
 from apps.customers.services.filters import CarServiceFilter
@@ -20,6 +22,8 @@ class CarServiceViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CarServiceSerializer
     queryset = mm_CarService.all()
     filter_class = CarServiceFilter
+    filter_backends = [filters.OrderingFilter, DjangoFilterBackend]
+    ordering_fields = ['start_at', 'update_at']
 
 
 class MyCarServiceViewSet(viewsets.ModelViewSet):

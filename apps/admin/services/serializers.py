@@ -19,4 +19,4 @@ class AdminCarServiceSerializer(serializers.ModelSerializer):
         model = CarService
         fields = ('id', 'customer', 'car_service_type', 'area_from', 'area_from_text', 'area_to', 'area_to_text',
                   'place_pass', 'start_at', 'tel', 'site_count', 'mark', 'published',
-                  'update_at', 'create_at')
+                  'update_at', 'create_at', 'range_type')
