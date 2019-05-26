@@ -12,6 +12,7 @@ from LianHua.lianhua_settings import CID
 from apps.base.serializers.products import BaseProductSerializer
 from apps.base.serializers.stores import BaseStoreTagSerializer
 from apps.customers.stores.serializers import StoreSerializer
+from apps.customers.stores.filters import StoreFilter
 from datamodels.data.models import mm_CustomerAccessStoreRecord, mm_StoreViewCountRecord
 from datamodels.products.models import mm_Product
 from datamodels.stores.models import mm_Tag, mm_Store
@@ -29,6 +30,7 @@ class StoreViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = []
     queryset = mm_Store.all()
     serializer_class = StoreSerializer
+    filter_class = StoreFilter
 
     @action(detail=True, methods=['get'])
     def products(self, request, pk=None):
