@@ -10,6 +10,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 
 from apps.admin.stores.serializers import StoreSerializer
+from apps.admin.stores.filters import AdminStoreFilter
 from apps.base.serializers.stores import BaseStoreTagSerializer, BaseTagIdSerialzier
 from datamodels.stores.models import mm_Store, mm_Tag
 
@@ -26,6 +27,7 @@ class StoreViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated, IsAdminUser)
     queryset = mm_Store.all()
     serializer_class = StoreSerializer
+    filter_class = AdminStoreFilter
 
     @action(methods=['post'], detail=True, serializer_class=BaseTagIdSerialzier)
     def add_tag(self, request, pk=None):

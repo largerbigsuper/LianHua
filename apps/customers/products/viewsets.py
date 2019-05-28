@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from LianHua.settings import CID
 from apps.base.serializers.products import BaseProductTypeSerializer
 from apps.customers.products.serializers import ProductSerializer
+from apps.customers.products.filters import ProductFilter
 from datamodels.data.models import mm_ProductViewCountRecord, mm_CustomerAccessProductRecord
 from datamodels.products.models import mm_Product, mm_ProductType
 
@@ -26,6 +27,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = []
     serializer_class = ProductSerializer
     queryset = mm_Product.products_in_market()
+    filter_class = ProductFilter
 
     def retrieve(self, request, *args, **kwargs):
         product = self.get_object()

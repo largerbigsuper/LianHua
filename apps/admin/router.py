@@ -11,6 +11,7 @@ from apps.admin.index.viewsets import AdminAdViewSet
 from apps.admin.products.viewsets import ProductTypeViewSet, ProductViewSet
 from apps.admin.services.viewsets import AdminCarServiceViewSet
 from apps.admin.stores.viewsets import StoreViewSet, TagViewSet
+from apps.admin.videos.viewsets import AdminVideoViewSet
 
 admin_router = routers.DefaultRouter()
 
@@ -21,4 +22,4 @@ admin_router.register('producttype', ProductTypeViewSet, base_name='admin-produc
 admin_router.register('product', ProductViewSet, base_name='admin-product')
 admin_router.register('ad', AdminAdViewSet, base_name='admin-ad')
 admin_router.register('service-car', AdminCarServiceViewSet, base_name='admin-service-car')
-
+admin_router.register('video', AdminVideoViewSet, base_name='admin-video')

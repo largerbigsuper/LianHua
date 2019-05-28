@@ -92,8 +92,29 @@ class CustomerAccessProductRecord(models.Model):
         db_table = DB_PREFIX + 'customer_access_product_records'
 
 
+class CustomerAccessVideoRecordManager(ModelManager):
+
+    def add_record(self, customer_id, video_id):
+        self.create(customer_id=customer_id, video_id=video_id)
+
+
+class CustomerAccessVideoRecord(models.Model):
+    """用户访问视频记录"""
+
+    customer = models.ForeignKey('customers.Customer', on_delete=models.DO_NOTHING)
+    video = models.ForeignKey('videos.Video', on_delete=models.DO_NOTHING)
+    create_at = models.DateTimeField(auto_now_add=True)
+
+    objects  = CustomerAccessVideoRecordManager()
+
+    class Meta:
+        db_table = DB_PREFIX + 'customer_access_video_records'
+
+
 mm_ProductViewCountRecord = ProductViewCountRecord.objects
 mm_StoreViewCountRecord = StoreViewCountRecord.objects
 mm_CustomerAccessProductRecord = CustomerAccessProductRecord.objects
 mm_CustomerAccessStoreRecord = CustomerAccessStoreRecord.objects
+mm_CustomerAccessVideoRecord = CustomerAccessVideoRecord.objects
+
 

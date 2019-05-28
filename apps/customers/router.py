@@ -11,6 +11,7 @@ from apps.customers.index.viewsets import ADViewSet
 from apps.customers.products.viewsets import ProductViewSet, ProductTypeViewSet
 from apps.customers.services.viewsets import CarServiceViewSet, MyCarServiceViewSet
 from apps.customers.stores.viewsets import TagViewSet, StoreViewSet
+from apps.customers.videos.viewsets import VideoViewSet
 
 customer_router = routers.DefaultRouter()
 
@@ -22,3 +23,4 @@ customer_router.register('product', ProductViewSet, base_name='customer-product'
 customer_router.register('ad', ADViewSet, base_name='customer-ad')
 customer_router.register('service-car', CarServiceViewSet, base_name='customer-service-car')
 customer_router.register('my/service-car', MyCarServiceViewSet, base_name='customer-my-service-car')
+customer_router.register('video', VideoViewSet, base_name='customer-video')
