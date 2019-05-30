@@ -48,7 +48,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
             'id': customer.id,
             'user_id': customer.user.id,
             'name': customer.name,
-            'token': token,
+            'token': token.key,
         }
         return Response(data=data)
 
