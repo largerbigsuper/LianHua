@@ -43,10 +43,12 @@ class CustomerViewSet(viewsets.ModelViewSet):
         # unionid = ret_json.get('session_key')
         customer = mm_Customer.get_customer_by_miniprogram(openid)
         customer_login(request, customer.user)
+        token, _ = Token.objects.get_or_create(user=customer.user)
         data = {
             'id': customer.id,
             'user_id': customer.user.id,
             'name': customer.name,
+            'token': token,
         }
         return Response(data=data)
 
